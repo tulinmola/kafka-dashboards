@@ -4,22 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Kafka Dashboards">
+    <meta name="author" content="tulinmola">
 
     <title>Kafka Dashboards</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
+          rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+          rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+      <header>
+        <nav>
+          <ul>
+            <li <%= if current_controller(@view_module) == "KafkaInstanceView", do: "class=current" %>>
+              <%= link "instances", to: kafka_instance_path(@conn, :index) %>
+            </li>
           </ul>
         </nav>
-        <span class="logo"></span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

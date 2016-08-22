@@ -29,4 +29,6 @@
   </tbody>
 </table>
 
-<%= link "New kafka instance", to: kafka_instance_path(@conn, :new) %>
+<div class="buttons">
+  <%= link "New kafka instance", to: kafka_instance_path(@conn, :new) %>
+</div>

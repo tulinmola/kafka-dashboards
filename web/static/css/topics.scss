@@ -1,0 +1,10 @@
+@import "settings";
+
+.topics {
+  line-height: 22px;
+  font-size: 16px;
+
+  li {
+    padding: 0 $pad;
+  }
+}

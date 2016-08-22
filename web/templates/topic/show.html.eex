@@ -1,15 +1,8 @@
-<h2>Show topic</h2>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @topic.name %>
-  </li>
-
-</ul>
+<h2>Topic <code><%= @topic.name %></code></h2>
 
 <ul class="messages" data-topic="<%= @topic.name %>">
 </ul>
 
-<%= link "Back", to: kafka_instance_topic_path(@conn, :index, @kafka_instance) %>
+<div class="buttons">
+  <%= link "Back", to: kafka_instance_topic_path(@conn, :index, @kafka_instance) %>
+</div>

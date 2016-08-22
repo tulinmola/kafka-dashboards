@@ -1,0 +1,33 @@
+@import "settings";
+
+body {
+  background-color: $background-color;
+  font-family: $font-family;
+  color: $color;
+  font-weight: $font-weight;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 32px;
+  margin-bottom: $pad;
+  border-bottom: 1px solid #ddd;
+  padding-left: $pad;
+}
+
+code {
+  font-family: $console-font-family;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

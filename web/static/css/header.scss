@@ -1,0 +1,32 @@
+@import "settings";
+
+header {
+  overflow: hidden;
+}
+
+nav {
+  float: right;
+
+  li {
+    display: inline-block;
+  }
+  a {
+    padding: 0 $pad;
+    display: block;
+    line-height: 32px;
+    color: $color;
+
+    &:hover {
+      background-color: #eee;
+      text-decoration: none;
+    }
+  }
+
+  .current {
+    font-weight: 600;
+    
+    a {
+      color: #666;
+    }
+  }
+}

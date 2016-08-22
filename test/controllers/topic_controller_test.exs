@@ -18,7 +18,7 @@ defmodule Kdb.TopicControllerTest do
     name = ensure_topic_exists("test")
     topic = %Topic{name: name}
     conn = get conn, kafka_instance_topic_path(conn, :show, kafka_instance, topic)
-    assert html_response(conn, 200) =~ "Show topic"
+    assert html_response(conn, 200) =~ "<h2>Topic <code>#{topic.name}</code></h2>"
   end
 
   test "renders page not found when id is nonexistent",

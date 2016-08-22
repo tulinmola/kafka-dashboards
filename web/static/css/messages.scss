@@ -1,0 +1,18 @@
+@import "settings";
+
+.messages {
+  font-family: $console-font-family;
+  background-color: $console-background-color;
+  color: $console-color;
+  line-height: 20px;
+  font-size: 14px;
+  margin-bottom: $pad;
+
+  li {
+    padding: 0 $pad;
+  }
+
+  li:nth-child(2n) {
+    background-color: $console-background-color-alt;
+  }
+}
