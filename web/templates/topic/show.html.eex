@@ -9,4 +9,7 @@
 
 </ul>
 
+<ul class="messages" data-topic="<%= @topic.name %>">
+</ul>
+
 <%= link "Back", to: kafka_instance_topic_path(@conn, :index, @kafka_instance) %>

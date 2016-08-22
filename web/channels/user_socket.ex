@@ -2,7 +2,7 @@ defmodule Kdb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Kdb.RoomChannel
+  channel "topic:*", Kdb.TopicChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
