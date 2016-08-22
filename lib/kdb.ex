@@ -10,6 +10,7 @@ defmodule Kdb do
     children = [
       # Start the endpoint when the application starts
       supervisor(Kdb.Endpoint, []),
+      supervisor(Kdb.Repo, []),
       # Start your own worker by calling: Kdb.Worker.start_link(arg1, arg2, arg3)
       # worker(Kdb.Worker, [arg1, arg2, arg3]),
     ]
