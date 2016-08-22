@@ -2,6 +2,8 @@ defmodule Kdb.Repo do
   @initial_state %{}
   @default_opts [repo: __MODULE__]
 
+  alias Kdb.Repo.NoResultsError
+
   def start_link(opts \\ [name: __MODULE__]) do
     Agent.start_link(fn -> @initial_state end, name: opts[:name])
   end
@@ -47,7 +49,7 @@ defmodule Kdb.Repo do
   def insert!(changeset, opts \\ @default_opts) do
     case insert(changeset, opts) do
       {:ok, model} -> model
-      _ -> raise "Couldn't insert changeset"
+      _ -> raise NoResultsError, [changeset: changeset]
     end
   end
 
@@ -94,7 +96,7 @@ defmodule Kdb.Repo do
 
   def delete!(model, opts \\ @default_opts) do
     case get(model.__struct__, model.id, opts) do
-      nil -> raise "Not found: #{model.id}"
+      nil -> raise NoResultsError, [id: model.id]
       model ->
         {:ok, _model} = delete(model, opts)
         model
@@ -110,7 +112,7 @@ defmodule Kdb.Repo do
 
   def get!(module, id, opts \\ @default_opts) do
     case get(module, id, opts) do
-      nil -> raise "Not found: #{id}"
+      nil -> raise NoResultsError, [id: id]
       model -> model
     end
   end

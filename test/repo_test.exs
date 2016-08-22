@@ -60,7 +60,7 @@ defmodule Kdb.RepoTest do
   end
 
   test "should raise an exception getting an non-existent element", %{repo: repo} do
-    assert_raise RuntimeError, fn ->
+    assert_raise Repo.NoResultsError, fn ->
       Repo.get!(Model, -1, repo: repo)
     end
   end
@@ -87,7 +87,7 @@ defmodule Kdb.RepoTest do
     changeset = Model.changeset(%Model{}, @valid_params)
     model = Ecto.Changeset.apply_changes(changeset)
 
-    assert_raise RuntimeError, fn ->
+    assert_raise Repo.NoResultsError, fn ->
       Repo.delete!(model, repo: repo)
     end
   end
