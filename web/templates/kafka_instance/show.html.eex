@@ -1,0 +1,43 @@
+<h2>Show kafka instance</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @kafka_instance.name %>
+  </li>
+
+  <li>
+    <strong>Uris:</strong>
+    <%= @kafka_instance.uris %>
+  </li>
+
+  <li>
+    <strong>Consumer group:</strong>
+    <%= @kafka_instance.consumer_group %>
+  </li>
+
+  <li>
+    <strong>Sync timeout:</strong>
+    <%= @kafka_instance.sync_timeout %>
+  </li>
+
+  <li>
+    <strong>Max restart:</strong>
+    <%= @kafka_instance.max_restarts %>
+  </li>
+
+  <li>
+    <strong>Max seconds:</strong>
+    <%= @kafka_instance.max_seconds %>
+  </li>
+
+  <li>
+    <strong>Kafka version:</strong>
+    <%= @kafka_instance.kafka_version %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: kafka_instance_path(@conn, :edit, @kafka_instance) %>
+<%= link "Back", to: kafka_instance_path(@conn, :index) %>

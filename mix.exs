@@ -37,6 +37,7 @@ defmodule Kdb.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:kafka_ex, "0.5.0"},
+     {:ex_machina, "~> 1.0", only: :test},
      {:uuid, "~> 1.1"}]
   end
 end

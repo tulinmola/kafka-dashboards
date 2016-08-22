@@ -1,0 +1,32 @@
+<h2>Listing kafka instances</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Uris</th>
+      <th>Consumer group</th>
+      <th>Sync timeout</th>
+      <th>Max restart</th>
+      <th>Max seconds</th>
+      <th>Kafka version</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for kafka_instance <- @kafka_instances do %>
+    <tr>
+      <td><%= kafka_instance.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: kafka_instance_path(@conn, :show, kafka_instance), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: kafka_instance_path(@conn, :edit, kafka_instance), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: kafka_instance_path(@conn, :delete, kafka_instance), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New kafka instance", to: kafka_instance_path(@conn, :new) %>
