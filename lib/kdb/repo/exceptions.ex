@@ -16,3 +16,23 @@ defmodule Kdb.Repo.NoResultsError do
     %__MODULE__{message: msg}
   end
 end
+
+defmodule Kdb.Repo.InvalidChangesetError do
+  @moduledoc """
+  Raised when we cannot perform an action because the
+  changeset is invalid.
+  """
+  defexception [:action, :changeset]
+
+  def message(%{action: action, changeset: changeset}) do
+    """
+    could not perform #{action} because changeset is invalid.
+    * Changeset changes
+    #{inspect changeset.changes}
+    * Changeset params
+    #{inspect changeset.params}
+    * Changeset errors
+    #{inspect changeset.errors}
+    """
+  end
+end

@@ -2,7 +2,7 @@ defmodule Kdb.Repo do
   @initial_state %{}
   @default_opts [repo: __MODULE__]
 
-  alias Kdb.Repo.NoResultsError
+  alias Kdb.Repo.{NoResultsError, InvalidChangesetError}
 
   def start_link(opts \\ [name: __MODULE__]) do
     Agent.start_link(fn -> @initial_state end, name: opts[:name])
@@ -49,7 +49,7 @@ defmodule Kdb.Repo do
   def insert!(changeset, opts \\ @default_opts) do
     case insert(changeset, opts) do
       {:ok, model} -> model
-      _ -> raise NoResultsError, [changeset: changeset]
+      _ -> raise InvalidChangesetError, [action: :insert, changeset: changeset]
     end
   end
 

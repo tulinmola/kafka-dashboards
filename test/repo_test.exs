@@ -26,6 +26,7 @@ defmodule Kdb.RepoTest do
   end
 
   @valid_params %{name: "model"}
+  @invalid_params %{name: nil}
 
   test "should be empty", %{repo: repo} do
     assert Repo.all(Model, repo: repo) == []
@@ -38,6 +39,13 @@ defmodule Kdb.RepoTest do
     assert model.id
     assert model.name == Ecto.Changeset.get_field(changeset, :name)
     assert Repo.all(Model, repo: repo) == [model]
+  end
+
+  test "should raise an exception inserting an non-valid changeset", %{repo: repo} do
+    changeset = Model.changeset(%Model{}, @invalid_params)
+    assert_raise Repo.InvalidChangesetError, fn ->
+      Repo.insert!(changeset, repo: repo)
+    end
   end
 
   test "should get an element by id", %{repo: repo} do
