@@ -52,6 +52,13 @@ defmodule Kdb.RepoTest do
     assert !result
   end
 
+  test "should get an element by fields", %{repo: repo} do
+    changeset = Model.changeset(%Model{}, @valid_params)
+    {:ok, model} = Repo.insert(changeset, repo: repo)
+
+    assert Repo.get_by(Model, @valid_params, repo: repo) == model
+  end
+
   test "should raise an exception getting an non-existent element", %{repo: repo} do
     assert_raise RuntimeError, fn ->
       Repo.get!(Model, -1, repo: repo)

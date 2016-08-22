@@ -114,4 +114,11 @@ defmodule Kdb.Repo do
       model -> model
     end
   end
+
+  def get_by(module, fields, opts \\ @default_opts) do
+    key = state_key(module)
+    Agent.get(opts[:repo], fn state ->
+      Enum.find(state[key] || [], &(&1 = fields))
+    end)
+  end
 end
