@@ -12,6 +12,17 @@ defmodule Kdb.TopicTest do
     assert Enum.find(topics, &(&1.name == second))
   end
 
+  test "should get topic with bang by name" do
+    topic = ensure_topic_exists
+    assert %Topic{name: ^topic} = Topic.by_name!(topic)
+  end
+
+  test "should raise error when getting inexistent topic with bang" do
+    assert_raise Topic.NoResultsError, fn ->
+      Topic.by_name!("non-existent-topic")
+    end
+  end
+
   test "should create topic when doesn't exist" do
     name = UUID.uuid4
     assert %Topic{name: ^name} = Topic.by_name(name)

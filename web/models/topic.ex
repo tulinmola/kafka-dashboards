@@ -3,6 +3,8 @@ defmodule Kdb.Topic do
   @derive {Phoenix.Param, key: :name}
   defstruct [name: "", partitions: []]
 
+  alias Kdb.Topic.NoResultsError
+
   @doc """
   Gets all topics from kafka
   """
@@ -17,6 +19,17 @@ defmodule Kdb.Topic do
   # @spec by_name(binary) :: t
   def by_name(name) when is_binary(name) do
     from_kafka(name)
+  end
+
+  @doc """
+  Gets topic from kafka and raises exception if it doesn't exist
+  """
+  def by_name!(name) do
+    topic = all |> Enum.find(&(&1.name == name))
+    case topic do
+      nil -> raise NoResultsError, [topic: name]
+      _ -> topic
+    end
   end
 
   def latest_offset(name) when is_binary(name) do
