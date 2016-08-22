@@ -18,7 +18,9 @@ defmodule Kdb.Router do
 
     get "/", PageController, :index
 
-    resources "/instances", KafkaInstanceController
+    resources "/instances", KafkaInstanceController do
+      resources "/topics", TopicController, only: [:index, :show]
+    end
   end
 
   # Other scopes may use custom stacks.

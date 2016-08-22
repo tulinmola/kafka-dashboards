@@ -28,6 +28,8 @@ defmodule Kdb.Web do
 
       import Kdb.Router.Helpers
       import Kdb.Gettext
+
+      alias Kdb.Repo
     end
   end
 

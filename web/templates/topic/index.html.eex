@@ -1,0 +1,24 @@
+<h2>Listing topics</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for topic <- @topics do %>
+    <tr>
+      <td><%= topic.name %></td>
+
+      <td class="text-right">
+        <%= link "Show",
+                 to: kafka_instance_topic_path(@conn, :show, @kafka_instance, topic),
+                 class: "btn btn-default btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

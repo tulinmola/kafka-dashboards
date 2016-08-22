@@ -1,7 +1,7 @@
 defmodule Kdb.KafkaInstanceController do
   use Kdb.Web, :controller
 
-  alias Kdb.{Repo, KafkaInstance}
+  alias Kdb.{KafkaInstance, Topic}
 
   def index(conn, _params) do
     kafka_instances = Repo.all(KafkaInstance)
@@ -28,7 +28,8 @@ defmodule Kdb.KafkaInstanceController do
 
   def show(conn, %{"id" => id}) do
     kafka_instance = Repo.get!(KafkaInstance, id)
-    render(conn, "show.html", kafka_instance: kafka_instance)
+    topics = Topic.all
+    render(conn, "show.html", kafka_instance: kafka_instance, topics: topics)
   end
 
   def edit(conn, %{"id" => id}) do

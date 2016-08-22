@@ -39,5 +39,15 @@
 
 </ul>
 
+<h3>Topics</h3>
+
+<ul class="topics">
+<%= for topic <- @topics do %>
+  <li><%= link topic.name,
+          to: kafka_instance_topic_path(@conn, :show, @kafka_instance, topic) %>
+  </li>
+<% end %>
+</ul>
+
 <%= link "Edit", to: kafka_instance_path(@conn, :edit, @kafka_instance) %>
 <%= link "Back", to: kafka_instance_path(@conn, :index) %>
