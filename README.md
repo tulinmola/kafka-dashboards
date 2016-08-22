@@ -1,4 +1,8 @@
-# Kdb
+# Kafka Dashboards
+
+Prerequisites:
+
+  * A working kafka to connect to. To start kafka in dockermachine use `scripts/start_kafka.sh`
 
 To start your Phoenix app:
 
