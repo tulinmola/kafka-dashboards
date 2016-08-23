@@ -4,7 +4,7 @@ defmodule Kdb.Factory do
   def kafka_instance_factory do
     %Kdb.KafkaInstance{
       name: "instance",
-      uris: "192.168.100.99:9092",
+      uris: "192.168.99.100:9092",
       has_consumer_group: false,
       # consumer_group: :no_consumer_group,
       sync_timeout: 3000,

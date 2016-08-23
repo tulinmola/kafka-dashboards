@@ -28,7 +28,7 @@ defmodule Kdb.KafkaInstanceController do
 
   def show(conn, %{"id" => id}) do
     kafka_instance = Repo.get!(KafkaInstance, id)
-    topics = Topic.all
+    topics = Topic.all(kafka_instance)
     render(conn, "show.html", kafka_instance: kafka_instance, topics: topics)
   end
 

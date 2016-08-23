@@ -74,10 +74,17 @@ defmodule Kdb.KafkaInstance do
     {host, port}
   end
 
+  def worker(model, opts \\ [name: :no_name]) do
+    config = to_kafka_ex(model)
+    KafkaEx.create_worker(opts[:name], config)
+  end
+
   def to_kafka_ex(model) do
     model
     |> Map.from_struct
     |> Keyword.new
+    |> Keyword.take(~w(uris consumer_group sync_timeout max_restarts max_seconds
+                       kafka_version)a)
     |> Keyword.update!(:consumer_group, &kafka_ex_consumer_group/1)
     |> Keyword.update!(:uris, &uris/1)
   end

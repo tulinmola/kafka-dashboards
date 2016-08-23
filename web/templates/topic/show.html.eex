@@ -1,6 +1,12 @@
-<h2>Topic <code><%= @topic.name %></code></h2>
+<h2>
+  Topic
+  <code>
+    <%= link @kafka_instance.name,
+             to: kafka_instance_path(@conn, :show, @kafka_instance) %></code>/
+  <code><%= @topic.name %></code>
+</h2>
 
-<ul class="messages" data-topic="<%= @topic.name %>">
+<ul class="messages" data-topic="<%= @kafka_instance.id %>,<%= @topic.name %>">
 </ul>
 
 <div class="buttons">

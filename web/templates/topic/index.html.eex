@@ -1,4 +1,10 @@
-<h2>Listing topics</h2>
+<h2>
+  Listing topics from
+  <code>
+    <%= link @kafka_instance.name,
+             to: kafka_instance_path(@conn, :show, @kafka_instance) %>
+  </code>
+</h2>
 
 <table class="table">
   <thead>
