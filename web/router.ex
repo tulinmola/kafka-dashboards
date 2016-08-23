@@ -16,7 +16,7 @@ defmodule Kdb.Router do
   scope "/", Kdb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", KafkaInstanceController, :index
 
     resources "/instances", KafkaInstanceController do
       resources "/topics", TopicController, only: [:index, :show]
