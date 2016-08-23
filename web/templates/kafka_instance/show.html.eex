@@ -1,5 +1,9 @@
 <h2>Show kafka instance</h2>
 
+<%= link "Export",
+         to: kafka_instance_action_url(@conn, :export, @kafka_instance),
+         download: @kafka_instance.name %>
+
 <ul>
 
   <li>

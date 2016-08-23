@@ -19,6 +19,8 @@ defmodule Kdb.Router do
     get "/", KafkaInstanceController, :index
 
     resources "/instances", KafkaInstanceController do
+      get "/export", KafkaInstanceActionController, :export, as: "action"
+      
       resources "/topics", TopicController, only: [:index, :show]
     end
   end
