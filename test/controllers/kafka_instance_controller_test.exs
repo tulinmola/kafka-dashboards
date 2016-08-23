@@ -14,10 +14,11 @@ defmodule Kdb.KafkaInstanceControllerTest do
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    params = build(:kafka_instance) |> Map.from_struct
+    name = "creation test"
+    params = build(:kafka_instance, name: name) |> Map.from_struct
     conn = post conn, kafka_instance_path(conn, :create), kafka_instance: params
     assert redirected_to(conn) == kafka_instance_path(conn, :index)
-    assert Repo.get_by(KafkaInstance, params)
+    assert Repo.get_by(KafkaInstance, %{name: name})
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do

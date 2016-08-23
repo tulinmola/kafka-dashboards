@@ -120,7 +120,14 @@ defmodule Kdb.Repo do
   def get_by(module, fields, opts \\ @default_opts) do
     key = state_key(module)
     Agent.get(opts[:repo], fn state ->
-      Enum.find(state[key] || [], &(&1 = fields))
+      Enum.find(state[key] || [], &(contains?(&1, fields)))
     end)
+  end
+
+  defp contains?(struct, fields) do
+    map = Map.from_struct(struct)
+    fields
+    |> Enum.map(fn ({key, value}) -> map[key] == value end)
+    |> Enum.all?(&(&1 == true))
   end
 end

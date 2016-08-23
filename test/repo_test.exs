@@ -61,10 +61,15 @@ defmodule Kdb.RepoTest do
   end
 
   test "should get an element by fields", %{repo: repo} do
-    changeset = Model.changeset(%Model{}, @valid_params)
-    {:ok, model} = Repo.insert(changeset, repo: repo)
+    other = UUID.uuid4
+    other_changeset = Model.changeset(%Model{}, %{name: other})
+    {:ok, _other_model} = Repo.insert(other_changeset, repo: repo)
 
-    assert Repo.get_by(Model, @valid_params, repo: repo) == model
+    name = UUID.uuid4
+    model_changeset = Model.changeset(%Model{}, %{name: name})
+    {:ok, model} = Repo.insert(model_changeset, repo: repo)
+
+    assert Repo.get_by(Model, %{name: name}, repo: repo) == model
   end
 
   test "should raise an exception getting an non-existent element", %{repo: repo} do
