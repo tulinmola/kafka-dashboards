@@ -20,4 +20,21 @@ defmodule Kdb.KafkaInstanceActionControllerTest do
     }
     assert response == expected
   end
+
+  test "imports from json file", %{conn: conn} do
+    name = UUID.uuid4
+    kafka_instance_params = params_for(:kafka_instance, name: name)
+    json = Poison.encode!(kafka_instance_params)
+    {:ok, file_path} = Temp.open("import.json", &IO.write(&1, json))
+    upload = %Plug.Upload{content_type: "application/json",
+                          filename: "import.json", path: file_path}
+
+    import_params = %{file: upload}
+    conn = post conn, kafka_instance_action_path(conn, :import),
+                import_params: import_params
+
+    kafka_instance = Repo.get_by(KafkaInstance, %{name: name})
+    assert kafka_instance
+    assert redirected_to(conn) == kafka_instance_path(conn, :show, kafka_instance)
+  end
 end

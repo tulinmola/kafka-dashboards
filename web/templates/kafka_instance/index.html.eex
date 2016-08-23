@@ -31,4 +31,12 @@
 
 <div class="buttons">
   <%= link "New kafka instance", to: kafka_instance_path(@conn, :new) %>
+  <%= link "Import", to: "#", data: ["file-form": "#import-kafka-instance"] %>
 </div>
+
+<%= form_for @conn, kafka_instance_action_path(@conn, :import),
+             [id: "import-kafka-instance", class: "file-form", multipart: true,
+             as: :import_params], fn f -> %>
+  <%= file_input f, :file %>
+  <%= submit "Upload" %>
+<% end %>

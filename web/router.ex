@@ -20,9 +20,11 @@ defmodule Kdb.Router do
 
     resources "/instances", KafkaInstanceController do
       get "/export", KafkaInstanceActionController, :export, as: "action"
-      
+
       resources "/topics", TopicController, only: [:index, :show]
     end
+    post "/instances/import", KafkaInstanceActionController, :import, as: "kafka_instance_action"
+
   end
 
   # Other scopes may use custom stacks.
