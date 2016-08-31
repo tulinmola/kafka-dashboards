@@ -1,47 +1,34 @@
-<h2>Show kafka instance</h2>
+<h2>
+  <%= link "Kafka instances", to: kafka_instance_path(@conn, :index) %> /
+  <%= @kafka_instance.name %>
+</h2>
 
-<%= link "Export",
-         to: kafka_instance_action_url(@conn, :export, @kafka_instance),
-         download: @kafka_instance.name %>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @kafka_instance.name %>
-  </li>
-
-  <li>
-    <strong>Uris:</strong>
-    <%= @kafka_instance.uris %>
-  </li>
-
-  <li>
-    <strong>Consumer group:</strong>
-    <%= @kafka_instance.consumer_group %>
-  </li>
-
-  <li>
-    <strong>Sync timeout:</strong>
-    <%= @kafka_instance.sync_timeout %>
-  </li>
-
-  <li>
-    <strong>Max restart:</strong>
-    <%= @kafka_instance.max_restarts %>
-  </li>
-
-  <li>
-    <strong>Max seconds:</strong>
-    <%= @kafka_instance.max_seconds %>
-  </li>
-
-  <li>
-    <strong>Kafka version:</strong>
-    <%= @kafka_instance.kafka_version %>
-  </li>
-
-</ul>
+<section class="kafka-instance-info">
+  <dl>
+    <dt>Uris</dt>
+    <dd title="<%= @kafka_instance.uris %>"><%= @kafka_instance.uris %></dd>
+  </dl>
+  <dl>
+    <dt>Consumer group</dt>
+    <dd><%= @kafka_instance.consumer_group %></dd>
+  </dl>
+  <dl>
+    <dt>Sync timeout</dt>
+    <dd><%= @kafka_instance.sync_timeout %> milliseconds</dd>
+  </dl>
+  <dl>
+    <dt>Max restarts</dt>
+    <dd><%= @kafka_instance.max_restarts %> times</dd>
+  </dl>
+  <dl>
+    <dt>Max seconds</dt>
+    <dd><%= @kafka_instance.max_seconds %> seconds</dd>
+  </dl>
+  <dl>
+    <dt>Kafka version</dt>
+    <dd><%= @kafka_instance.kafka_version %></dd>
+  </dl>
+</section>
 
 <h3>Topics</h3>
 
@@ -53,5 +40,12 @@
 <% end %>
 </ul>
 
-<%= link "Edit", to: kafka_instance_path(@conn, :edit, @kafka_instance) %>
-<%= link "Back", to: kafka_instance_path(@conn, :index) %>
+<div class="buttons">
+  <%= link "Edit", to: kafka_instance_path(@conn, :edit, @kafka_instance) %> |
+  <%= link "Export",
+           to: kafka_instance_action_url(@conn, :export, @kafka_instance),
+           download: @kafka_instance.name %> |
+  <%= link "Delete", to: kafka_instance_path(@conn, :delete, @kafka_instance),
+           method: :delete, data: [confirm: "Are you sure?"],
+           class: "btn btn-danger btn-xs" %>
+</div>

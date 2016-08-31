@@ -21,9 +21,10 @@ defmodule Kdb.ConnCase do
       use Phoenix.ConnTest
 
       import Kdb.Router.Helpers
-      
+
       import Kdb.Factory, only: [build: 1, build: 2]
       import Kdb.MyMachina
+      import Kdb.HtmlHelpers
 
       alias Kdb.Repo
 

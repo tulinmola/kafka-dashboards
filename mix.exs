@@ -38,6 +38,7 @@ defmodule Kdb.Mixfile do
      {:cowboy, "~> 1.0"},
      {:kafka_ex, "0.5.0"},
      {:temp, "~> 0.4", only: :test},
+     {:floki, "~> 0.10.1", only: :test},
      {:ex_machina, "~> 1.0", only: :test},
      {:uuid, "~> 1.1"}]
   end

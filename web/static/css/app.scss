@@ -1,4 +1,11 @@
 @import "settings";
+@import "mixins";
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
 
 body {
   background-color: $background-color;
@@ -7,12 +14,20 @@ body {
   font-weight: $font-weight;
 }
 
-h2 {
-  font-size: 20px;
-  line-height: 32px;
+h2, h3 {
   margin-bottom: $pad;
   border-bottom: 1px solid #ddd;
   padding-left: $pad;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+h3 {
+  font-size: 16px;
+  line-height: 26px;
 }
 
 code {
@@ -20,7 +35,7 @@ code {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 936px;
   margin: auto;
 }
 

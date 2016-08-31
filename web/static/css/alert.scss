@@ -1,0 +1,11 @@
+@import "settings";
+
+.alert {
+  margin-bottom: $pad;
+  padding: $pad;
+  text-align: center;
+
+  &:empty {
+    display: none;
+  }
+}

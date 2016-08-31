@@ -23,7 +23,7 @@
         <nav>
           <ul>
             <li <%= if current_controller(@view_module) == "KafkaInstanceView", do: "class=current" %>>
-              <%= link "instances", to: kafka_instance_path(@conn, :index) %>
+              <%= link "Kafka instances", to: kafka_instance_path(@conn, :index) %>
             </li>
           </ul>
         </nav>

@@ -1,38 +1,4 @@
-<h2>Listing kafka instances</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Uris</th>
-      <th>Consumer group</th>
-      <th>Sync timeout</th>
-      <th>Max restart</th>
-      <th>Max seconds</th>
-      <th>Kafka version</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for kafka_instance <- @kafka_instances do %>
-    <tr>
-      <td><%= kafka_instance.name %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: kafka_instance_path(@conn, :show, kafka_instance), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: kafka_instance_path(@conn, :edit, kafka_instance), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: kafka_instance_path(@conn, :delete, kafka_instance), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<div class="buttons">
-  <%= link "New kafka instance", to: kafka_instance_path(@conn, :new) %>
-  <%= link "Import", to: "#", data: ["file-form": "#import-kafka-instance"] %>
-</div>
+<h2>Kafka instances</h2>
 
 <%= form_for @conn, kafka_instance_action_path(@conn, :import),
              [id: "import-kafka-instance", class: "file-form", multipart: true,
@@ -40,3 +6,17 @@
   <%= file_input f, :file %>
   <%= submit "Upload" %>
 <% end %>
+
+<ul class="kafka-instances">
+  <%= for kafka_instance <- @kafka_instances do %>
+    <li>
+      <%= link kafka_instance.name, to: kafka_instance_path(@conn, :show, kafka_instance) %>
+      <span><%= kafka_instance.uris %></span>
+    </li>
+  <% end %>
+</ul>
+
+<div class="buttons">
+  <%= link "New kafka instance", to: kafka_instance_path(@conn, :new) %> |
+  <%= link "Import", to: "#", data: ["file-form": "#import-kafka-instance"] %>
+</div>

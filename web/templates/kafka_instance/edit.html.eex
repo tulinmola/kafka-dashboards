@@ -1,6 +1,8 @@
-<h2>Edit kafka instance</h2>
+<h2>
+  <%= link "Kafka instances", to: kafka_instance_path(@conn, :index) %> / Edit
+</h2>
 
-<%= render "form.html", changeset: @changeset,
+<%= render "form.html", changeset: @changeset, is_creating: false,
                         action: kafka_instance_path(@conn, :update, @kafka_instance) %>
 
 <%= link "Back", to: kafka_instance_path(@conn, :index) %>

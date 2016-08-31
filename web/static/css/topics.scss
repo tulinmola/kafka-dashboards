@@ -7,4 +7,12 @@
   li {
     padding: 0 $pad;
   }
+
+  li:nth-child(2n) {
+    background-color: #fafafa;
+  }
+
+  a {
+    display: block;
+  }
 }

@@ -1,6 +1,6 @@
-<h2>New kafka instance</h2>
+<h2>
+  <%= link "Kafka instances", to: kafka_instance_path(@conn, :index) %> / New
+</h2>
 
-<%= render "form.html", changeset: @changeset,
+<%= render "form.html", changeset: @changeset, is_creating: true,
                         action: kafka_instance_path(@conn, :create) %>
-
-<%= link "Back", to: kafka_instance_path(@conn, :index) %>
