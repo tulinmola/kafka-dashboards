@@ -1,4 +1,4 @@
-# Kafka Dashboards
+# Kafka Dashboards [![Deps Status](https://beta.hexfaktor.org/badge/all/github/tulinmola/kafka-dashboards.svg)](https://beta.hexfaktor.org/github/tulinmola/kafka-dashboards)
 
 Prerequisites:
 
