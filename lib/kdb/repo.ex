@@ -3,6 +3,7 @@ defmodule Kdb.Repo do
   @default_opts [repo: __MODULE__]
 
   alias Kdb.Repo.{NoResultsError, InvalidChangesetError}
+  alias Ecto.Changeset
 
   def start_link(opts \\ [name: __MODULE__]) do
     Agent.start_link(fn -> @initial_state end, name: opts[:name])
@@ -14,7 +15,7 @@ defmodule Kdb.Repo do
     end)
   end
 
-  defp state_key(%Ecto.Changeset{} = changeset) do
+  defp state_key(%Changeset{} = changeset) do
     state_key(changeset.data.__struct__)
   end
   defp state_key(module) do
@@ -28,7 +29,7 @@ defmodule Kdb.Repo do
     if changeset.valid? do
       # Get the modified model struct out of the changeset
       model = changeset
-        |> Ecto.Changeset.apply_changes
+        |> Changeset.apply_changes
         |> Map.put(:id, UUID.uuid4)
 
       # Update state
@@ -56,7 +57,7 @@ defmodule Kdb.Repo do
   def update(changeset, opts \\ @default_opts) do
     if changeset.valid? do
       # Get the modified model struct out of the changeset
-      model = Ecto.Changeset.apply_changes(changeset)
+      model = Changeset.apply_changes(changeset)
       id = model.id
 
       case get(model.__struct__, id, opts) do

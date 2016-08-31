@@ -82,7 +82,7 @@ defmodule Kdb.FormHelpers do
     # TODO: Warn! Code duplication due to select being /4 and not /3 function
     # FIXME
     klass = "field"
-    {klass, error_tag } = if error = form.errors[name] do
+    {klass, error_tag} = if error = form.errors[name] do
       {
         "#{klass} field-with-errors",
         content_tag(:span, translate_error(error), class: "field-error")

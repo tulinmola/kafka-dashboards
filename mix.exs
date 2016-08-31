@@ -37,6 +37,7 @@ defmodule Kdb.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:kafka_ex, "0.5.0"},
+     {:credo, "~> 0.4", only: [:dev, :test]},
      {:temp, "~> 0.4", only: :test},
      {:floki, "~> 0.10.1", only: :test},
      {:ex_machina, "~> 1.0", only: :test},

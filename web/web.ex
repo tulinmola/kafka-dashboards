@@ -42,7 +42,7 @@ defmodule Kdb.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-      
+
       import Kdb.FormHelpers
 
       import Kdb.Router.Helpers

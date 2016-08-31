@@ -74,7 +74,8 @@ defmodule Kdb.Topic do
     worker = ensure_kafka_worker(kafka_instance, name)
     offset = latest_offset(worker, name)
     spawn_link fn ->
-      KafkaEx.stream(name, 0, offset: offset, worker_name: worker, auto_commit: false)
+      name
+      |> KafkaEx.stream(0, offset: offset, worker_name: worker, auto_commit: false)
       |> Enum.each(&(callback.(from_kafka(&1))))
     end
   end
