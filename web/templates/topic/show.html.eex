@@ -5,5 +5,7 @@
   <%= @topic.name %>
 </h2>
 
-<ul class="messages" data-topic="<%= @kafka_instance.id %>,<%= @topic.name %>">
-</ul>
+<section data-topic="<%= channel_name(@kafka_instance, @topic) %>">
+  <ul class="messages">
+  </ul>
+</section>
