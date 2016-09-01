@@ -7,7 +7,7 @@ use Mix.Config
 
 # Configures the endpoint
 config :kdb, Kdb.Endpoint,
-  url: [host: "localhost"],
+  # url: [host: "localhost"],
   secret_key_base: "8OoDnrOy0GFtQNEnw2BBRTe1/wz5IUvbKTtlSb/iOTOLsaLc4WKuGatLxC49lrqy",
   render_errors: [view: Kdb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Kdb.PubSub,

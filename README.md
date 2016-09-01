@@ -1,8 +1,10 @@
 # Kafka Dashboards [![Deps Status](https://beta.hexfaktor.org/badge/all/github/tulinmola/kafka-dashboards.svg)](https://beta.hexfaktor.org/github/tulinmola/kafka-dashboards)
 
-Prerequisites:
+Configurable Kafka web dashboards... well... at this point of the development
+not too much configuration is possible... and there are no dashboards yet! But
+in a near future that's the idea. Stay in touch!
 
-  * A working kafka to connect to. To start kafka in dockermachine use `scripts/start_kafka.sh`
+## Development
 
 To start your Phoenix app:
 
@@ -12,12 +14,24 @@ To start your Phoenix app:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+## Testing
 
-## Learn more
+A working Kafka instance needs to be running for testing. You can run a
+dockerized Kafka instance with `scripts/start_kafka.sh`.
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Then just start tests as usual with `mix test`.
+
+Some notes here:
+
+  * The provided script uses docker-machine. Adapt it to your needs and don't
+forget updating `config/test.exs` to connect to your docker host IP.
+  * The tests create a lot of topics with testing data. Please, don't use your
+production Kafka for testing if you don't want to generate trash into it.
+
+## Running into a docker container
+
+To run Kafka Dashboards application into a container you just need:
+
+  * Build image with `docker build --tag=kafka-dashboards .`
+  * Run with `docker run -p 4000:4000 -e "HOST=192.168.99.100" kafka-dashboards`
+using your docker host IP
